@@ -2,11 +2,13 @@
   <div class="product-details">
     <h1>{{ products.title }}</h1>
     <img :src="products.image" alt="" class="product-image" />
-    <p>${{ products.price }} - {{ products.category }}</p>
+    <p>
+      <strong>${{ products.price }}</strong> - {{ products.category }}
+    </p>
     <p>{{ products.description }}</p>
   </div>
-  <div>
-    <router-link :to="{ name: 'Home' }">Back to all Products </router-link>
+  <div class="back">
+    <router-link :to="{ name: 'Home' }">Back to all Products >> </router-link>
   </div>
 </template>
 
@@ -43,6 +45,22 @@ export default {
 
 <style>
 .product-details {
-  margin-top: 200px;
+  margin: 200px auto auto auto;
+  width: 40%;
+}
+
+.product-details p {
+  font-size: 20px;
+}
+
+.back a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.back a:hover {
+  color: rgb(192, 7, 47);
 }
 </style>

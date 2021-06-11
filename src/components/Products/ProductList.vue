@@ -10,38 +10,25 @@
       <p class="product-price">${{ product.price }}</p>
       <router-link :to="`/products/${product.id}`">Details >></router-link>
 
-      <button class="btn-tocart" @click="addToCart">Add To Cart</button>
+      <button class="btn-tocart" @click="addToCart(product)">
+        Add To Cart
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "ProductList",
+  props: ["products"],
 
-  created() {
-    this.getProducts();
-  },
   data: () => ({
-    products: [],
-    toCart: [],
     /* favouriteProd: true, */
   }),
   methods: {
     isFavourite() {},
-    addToCart() {
-      this.toCart = this.products.push((product) => product.id);
-
-      console.log(this.toCart);
-    },
-    getProducts() {
-      axios.get("https://fakestoreapi.com/products").then((res) => {
-        this.products = res.data;
-
-        console.log(res);
-      });
+    addToCart(product) {
+      this.$emit("addToCart", product);
     },
   },
 };
